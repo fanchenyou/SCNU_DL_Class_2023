@@ -83,5 +83,5 @@ if __name__ == '__main__':
     plt.legend(loc="best")
     plt.title("precision vs. recall curve")
     plt.savefig('fig_manual.png')
-    plt.show()
+    # plt.show()
     plt.close()
