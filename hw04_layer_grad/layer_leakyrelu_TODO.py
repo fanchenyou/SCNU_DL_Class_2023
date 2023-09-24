@@ -37,7 +37,7 @@ def main():
     ##      Explain TODO  places    ##
     ##################################
     '''
-    Let y = dropout(x) be prediction.
+    Let y = leaky_relu(x) be prediction.
     Let the true value is 1.
     Then the loss L = (y-1.0)^2
     Delta_X = dL/dx = dL/dy * dy/dx = 2(y-1.0) * dy/dx
