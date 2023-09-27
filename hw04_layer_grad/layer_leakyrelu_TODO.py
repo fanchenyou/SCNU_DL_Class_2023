@@ -40,9 +40,11 @@ def main():
     Let y = leaky_relu(x) be prediction.
     Let the true value is 1.
     Then the loss L = (y-1.0)^2
-    Delta_X = dL/dx = dL/dy * dy/dx = 2(y-1.0) * dy/dx
-    Note that dy/dx is the backward_manual implemented by you
-    We now compare your dy/dx with torch.autograd
+    Delta_X_bottom = dL/dx = dL/dy * dy/dx = 2(y-1.0) * dy/dx
+    Note that dL/dy is actually the delta_X_top;
+    Note that dy/dx is the gradient of LeakyReLU layer, i.e.,
+     the backward_manual implemented by you
+    We can verify this by comparing your dy/dx with torch.autograd
     '''
 
     # test case as input

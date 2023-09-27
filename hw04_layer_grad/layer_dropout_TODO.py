@@ -4,10 +4,12 @@ import torch.nn as nn
 # Refer to Caffe Dropout implementation
 # https://github.com/BVLC/caffe/blob/master/src/caffe/layers/dropout_layer.cpp
 class MyDropout(nn.Module):
-    def __init__(self, p: float = 0.5):
+    def __init__(self, p: float = 0.05):
         super(MyDropout, self).__init__()
         if p < 0 or p > 1:
             raise ValueError("dropout probability has to be between 0 and 1, " "but got {}".format(p))
+        # p is probability of zeros -- to be dropped
+        # thus (1-p) is prob. of unchanged elements
         self.p = p
         self.scale = 1.0/(1-self.p)
 
@@ -17,7 +19,10 @@ class MyDropout(nn.Module):
         #######################################
         # TODO: Read forward function, explain what dropout does
         if self.training:
-            # in training, randomly sample 1-prob. elements to be zero
+            # in training, randomly sample 1-prob. elements to be one
+            # this sampling constructs a mask
+            # e.g., if p=0.05, then 95% of the mask values are 1
+            # the 5% values are 0, which drop the elements
             # check https://github.com/BVLC/caffe/blob/master/src/caffe/layers/dropout_layer.cpp#L39
             binomial = torch.distributions.binomial.Binomial(probs=1-self.p)
             # use the Binomial distribution to sample a binary mask
