@@ -73,7 +73,7 @@ def main():
     dropout.training = True
 
     # test case, print out the input x
-    x = torch.nn.Parameter(torch.arange(0,9).view(3,3).float(), requires_grad=True)
+    x = torch.arange(0,9, dtype=torch.float32, requires_grad=True).view(3,3)
 
 
     # forward
