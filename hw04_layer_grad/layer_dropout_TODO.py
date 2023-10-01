@@ -19,9 +19,9 @@ class MyDropout(nn.Module):
         #######################################
         # TODO: Read forward function, explain what dropout does
         if self.training:
-            # in training, randomly sample 1-prob. elements to be one
-            # this sampling constructs a mask
-            # e.g., if p=0.05, then 95% of the mask values are 1
+            # in training, randomly sample prob. (e.g., 5%) elements to be zero (dropped)
+            # then the rest 1-prob. elements of X to remain same
+            # First, we construct a mask, e.g., if p=0.05, then 95% of the mask values are 1
             # the 5% values are 0, which drop the elements
             # check https://github.com/BVLC/caffe/blob/master/src/caffe/layers/dropout_layer.cpp#L39
             binomial = torch.distributions.binomial.Binomial(probs=1-self.p)
@@ -29,10 +29,10 @@ class MyDropout(nn.Module):
             # indicating which elements to drop (mask[i,j]=0) and retain (mask[i,j]=1)
             self.mask = binomial.sample(X.size())
             # dropout X
-            X_mask = X * self.mask
-            # then we have to scale the element values to be 1/(1-prob), to make them roughly sum to one
+            X_masked = X * self.mask
+            # then we have to scale the element values to be 1/(1-prob), to make X_masked roughly sum to original X
             # e.g., if p=0.5, you randomly dropout half elements in X, the left half of X should be made values as 2X
-            X_scale = X_mask * self.scale
+            X_scale = X_masked * self.scale
             return  X_scale
         
         # in inference (validation/testing), no need to scale
