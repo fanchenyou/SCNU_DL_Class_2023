@@ -36,7 +36,7 @@ class WaveModel(nn.Module):
         self.hidden_size = 64
         self.n_layers = 2
         self.lstm = nn.LSTM(input_size=1,
-                            num_layers=2,
+                            num_layers=self.n_layers,
                             hidden_size=self.hidden_size,
                             batch_first=True)
         # last layer is for regression
@@ -119,15 +119,12 @@ if __name__ == '__main__':
     #####################################
     ## generate or load sine wave data ##
     #####################################
-    file_name = 'train_data_sine_wave.pt'
-    if not os.path.isfile(file_name):
-        data = gen_sine_wave()
-        torch.save(data, open(file_name, 'wb'))
-
     # load data and make training set
+    data = gen_sine_wave()
     # [100, 1000]
-    data = torch.load(file_name).astype(np.float32)
-    print(data.shape)
+    data = data.astype(np.float32)
+    print('Generating sine wave data, check gen_sine_wave()')
+    print('Data shape [B, L] is ', data.shape)
     assert data.shape[0] == N and data.shape[1] == L
 
     #########################
