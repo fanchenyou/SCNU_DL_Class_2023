@@ -93,13 +93,15 @@ class WaveModel(nn.Module):
         # here, we manually feed state into lstm step-by-step
         pred_step = []
         for p in range(predict_len):
-            # use last hidden and output to feed lstm, update h_t+1
-            output, (hn, cn) = self.lstm(last_output, (hn, cn))
-            # update y_t+1
-            last_output = self.linear(output)  # [B, 1, 1]
+            # TODO: use last hidden and output to feed lstm, update h_t+1, write a line of code here
+
+            # TODO: update y_t+1 as last_output, write a line of code here
+
             # store y_t+1
+            # currently last_output is dummy from encoder
+            # you should update last_output as in previous TODO point
             pred_step.append(last_output)
-            # repeat for predict_len times
+
 
         # make size [B, future_seq_len=100, 1]
         pred = torch.cat(pred_step, dim=1)
@@ -194,7 +196,7 @@ if __name__ == '__main__':
         # draw the result
         if True:
             plt.figure(figsize=(30, 10))
-            plt.title('Predict future values for time sequences\n(Dashlines are predicted values)', fontsize=30)
+            plt.title('Predict future values (green)\n(Dashlines are GT values)', fontsize=30)
             plt.xlabel('x', fontsize=20)
             plt.ylabel('y', fontsize=20)
             plt.xticks(fontsize=20)
