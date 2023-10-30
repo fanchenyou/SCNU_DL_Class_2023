@@ -2,6 +2,7 @@ import os
 import argparse
 import numpy as np
 from torch.utils import data
+import string
 
 import torch
 import torch.nn as nn
@@ -86,7 +87,6 @@ class mnist_dataset(data.Dataset):
 def load_mnist_data(args):
     # download mnist numpy data files from
     # https://www.kaggle.com/datasets/sivasankaru/mnist-npy-file-dataset?resource=download
-    # put *.py in hw_mnist/data folder
     train_labels = np.load('data/train_labels.npy')
     train_images = np.load('data/train_images.npy')
     test_labels = np.load('data/test_labels.npy')
@@ -130,8 +130,8 @@ def main():
                         help='input batch size for training (default: 64)')
     parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
                         help='input batch size for testing (default: 1000)')
-    parser.add_argument('--epochs', type=int, default=5, metavar='N',
-                        help='number of epochs to train (default: 5)')
+    parser.add_argument('--epochs', type=int, default=8, metavar='N',
+                        help='number of epochs to train (default: 8)')
     parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
                         help='learning rate (default: 1.0)')
     parser.add_argument('--gamma', type=float, default=0.8, metavar='M',

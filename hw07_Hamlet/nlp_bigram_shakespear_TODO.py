@@ -29,6 +29,7 @@ the_question_tokens = nltk.word_tokenize(the_question)
 if debug:
     ###############################################
     ## TODO: you please answer Hamlet's question ##
+    ## This is open question.
     ###############################################
     # we can locate this sentence in Act 3, Scene 1
     # go find this famous phrase  in shakespeare/Hamlet.txt
