@@ -173,9 +173,9 @@ if __name__ == '__main__':
 
         optimizer.step(closure)
 
-        ###################
-        ### Validation ####
-        ###################
+        #############################
+        ### Validation/Inference ####
+        #############################
         with torch.no_grad():
             # begin to complete a sine wave sequence
             pred_len = 100
