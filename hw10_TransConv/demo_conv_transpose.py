@@ -35,7 +35,7 @@ inv_out_2 = F.conv_transpose2d(conv_out, H_inv, stride=2, padding=0)
 print(inv_out_2)
 
 # TODO: Explain, are out2 and out3 close or deviating from original data D
-# Is a simple average convolution can reconstruct D ?
+# Can a simple average convolution reconstruct D ?
 
 # TODO: code the learnable TransConv below
 # Can we learn a kernel to reconstruct D with SGD ? Let's do it.
