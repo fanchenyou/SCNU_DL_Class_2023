@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 
 # This code shows a stride-2 transposed convolution can increase image size by twice
-# Also, a TransConv can be learned reconstruct original data with SGD, as in a GAN model
+# Also, a TransConv can be learned to reconstruct original data with SGD, as in a GAN model
 
 # Let's build a data matrix
 D = torch.arange(1,5).unsqueeze(0).repeat(4,1).float()
