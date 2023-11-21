@@ -18,8 +18,8 @@ H =  H.unsqueeze(0).unsqueeze(0)
 conv_out = F.conv2d(D, H, stride=1, padding=0)
 print(conv_out)
 
-# Can we simply conv out1 back to original data D ?
-# Let's assume that H_inv can simply average the out1 back to D and check
+# Can we simply convolute conv_out back to original data D ?
+# Let's assume that H_inv can simply average the conv_out back to D and check
 H_inv = H / 9
 
 # the padding option is a trick, read docs
@@ -34,7 +34,7 @@ print(inv_out_1)
 inv_out_2 = F.conv_transpose2d(conv_out, H_inv, stride=2, padding=0)
 print(inv_out_2)
 
-# TODO: Explain, are out2 and out3 close or deviating from original data D
+# TODO: Explain, are inv_out_1 and inv_out_2 close or deviating from original data D
 # Can a simple average convolution reconstruct D ?
 
 # TODO: code the learnable TransConv below
