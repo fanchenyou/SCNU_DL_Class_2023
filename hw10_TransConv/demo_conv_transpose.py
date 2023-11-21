@@ -40,7 +40,7 @@ print(inv_out_2)
 # TODO: code the learnable TransConv below
 # Can we learn a kernel to reconstruct D with SGD ? Let's do it.
 
-# First we declare a tensor H_learnable
+# First we declare a learnable transposed conv kernel H_trans
 H_trans = torch.nn.Parameter(H_inv, requires_grad=True)
 
 # We keep track of the best loss and best learned H_trans
