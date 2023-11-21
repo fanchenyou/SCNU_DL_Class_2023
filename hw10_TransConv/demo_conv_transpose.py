@@ -61,7 +61,7 @@ for epoch in range(num_epoch):
 
     # TODO: backward the loss to get gradient of H_trans, add a line below
 
-    # TODO: update H_trans data by subtracting the gradient * lr
+    # TODO: update H_trans data by subtracting the gradient * lr, review demo/demo_autograd.py
 
     # DO NOT MODIFY
     print(out_cur, H_trans, loss.item())
